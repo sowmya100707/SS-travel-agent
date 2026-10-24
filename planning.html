@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip | Mercy</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f8f5;
+            color: #18392f;
+        }
+
+        nav {
+            background: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h2 {
+            color: #167d63;
+        }
+
+        nav a {
+            color: #167d63;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .heading p {
+            color: #65766f;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: white;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .field {
+            margin-bottom: 23px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d5e1da;
+            border-radius: 9px;
+            font-size: 15px;
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid #8acbb5;
+            border-color: #167d63;
+        }
+
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .interest {
+            background: #f3f8f5;
+            border: 1px solid #dce9e1;
+            padding: 12px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .interest input {
+            width: auto;
+        }
+
+        .ai-box {
+            background: #edf7f1;
+            border: 1px solid #cce6d8;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 23px;
+        }
+
+        .ai-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .ai-box p {
+            color: #65766f;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .button {
+            width: 100%;
+            border: none;
+            background: #167d63;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #105e4a;
+        }
+
+        .budget-button {
+            margin-top: 10px;
+            background: #f0c66c;
+            color: #18392f;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .hint {
+            display: block;
+            margin-top: 8px;
+            color: #65766f;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #65766f;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .interest-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .heading h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <h2>🌿 Mercy</h2>
+    <a href="/">← Home</a>
+</nav>
+
+<main class="container">
+
+    <div class="heading">
+        <h1>Plan Your Perfect Trip ✈️</h1>
+        <p>Tell us what you love. Let Mercy help you discover your next destination.</p>
+    </div>
+
+    <form class="form-card" action="/results" method="POST">
+
+        <div class="field">
+            <label for="destination">📍 Where do you want to go?</label>
+
+            <select id="destination" name="destination" required>
+                <option value="">Select a destination</option>
+                <option value="Visakhapatnam">Visakhapatnam</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Goa">Goa</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Jaipur">Jaipur</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="days">📅 How many days are you travelling?</label>
+
+            <select id="days" name="days" required>
+                <option value="">Select number of days</option>
+                <option value="1">1 day</option>
+                <option value="2">2 days</option>
+                <option value="3">3 days</option>
+                <option value="4">4 days</option>
+                <option value="5">5 days</option>
+                <option value="7">7 days</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>💚 What are your interests?</label>
+
+            <div class="interest-grid">
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="Nature">
+                    🌳 Nature
+                </label>
+
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="Beach">
+                    🏖️ Beaches
+                </label>
+
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="History">
+                    🏛️ History
+                </label>
+
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="Temple">
+                    🛕 Temples
+                </label>
+
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="Wildlife">
+                    🐘 Wildlife
+                </label>
+
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="Culture">
+                    🎭 Culture
+                </label>
+
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="Adventure">
+                    🧗 Adventure
+                </label>
+
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="Museum">
+                    🖼️ Museums
+                </label>
+
+                <label class="interest">
+                    <input type="checkbox" name="interests" value="Food">
+                    🍲 Local Food
+                </label>
+            </div>
+
+            <span class="hint">Choose one or more interests.</span>
+        </div>
+
+        <div class="field">
+            <label for="places">📌 Places you want to visit (optional)</label>
+
+            <textarea
+                id="places"
+                name="places"
+                rows="3"
+                placeholder="Enter any places you already have in mind..."
+            ></textarea>
+
+            <span class="hint">Leave this blank if you want recommendations.</span>
+        </div>
+
+        <div class="field">
+            <label for="budget">💰 Your total budget (₹)</label>
+
+            <input
+                type="number"
+                id="budget"
+                name="budget"
+                min="1"
+                placeholder="Example: 3000"
+            >
+
+            <button type="button" class="budget-button" id="budgetButton">
+                ✨ Suggest a Budget
+            </button>
+
+            <span class="hint" id="budgetHint">
+                Unsure about your budget? Get a basic estimate.
+            </span>
+        </div>
+
+        <div class="ai-box">
+            <h3>🤖 Ask AI for Recommendations</h3>
+
+            <p>
+                Describe the trip you want. For example:
+                "I love peaceful nature places, waterfalls and historical sites."
+            </p>
+
+            <textarea
+                name="description"
+                id="description"
+                rows="3"
+                placeholder="Describe your ideal trip..."
+            ></textarea>
+        </div>
+
+        <button type="submit" class="button">
+            Find My Perfect Trip →
+        </button>
+
+    </form>
+
+</main>
+
+<footer>
+    Mercy — Intelligent AI Travel Planning Agent
+</footer>
+
+<script>
+    const daysInput = document.getElementById("days");
+    const budgetInput = document.getElementById("budget");
+    const destinationInput = document.getElementById("destination");
+    const budgetHint = document.getElementById("budgetHint");
+
+    document.getElementById("budgetButton").addEventListener("click", function () {
+        const days = Number(daysInput.value);
+        const destination = destinationInput.value;
+
+        if (!days || !destination) {
+            budgetHint.textContent =
+                "Please select a destination and number of days first.";
+            return;
+        }
+
+        // Basic illustrative estimate, not a live price.
+        const dailyEstimates = {
+            "Visakhapatnam": 1500,
+            "Hyderabad": 1800,
+            "Goa": 2500,
+            "Kerala": 2500,
+            "Bengaluru": 2000,
+            "Jaipur": 1800
+        };
+
+        const suggestedBudget = dailyEstimates[destination] * days;
+
+        budgetInput.value = suggestedBudget;
+
+        budgetHint.textContent =
+            "Suggested estimated budget: ₹" +
+            suggestedBudget.toLocaleString("en-IN") +
+            ". This is an example estimate; travel, accommodation and food costs may vary.";
+    });
+</script>
+
+</body>
+</html>
